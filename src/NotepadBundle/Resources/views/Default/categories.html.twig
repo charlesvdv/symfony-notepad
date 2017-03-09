@@ -1,0 +1,57 @@
+<head>
+    <title> Categories </title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href={{ asset('css/bootstrap.min.css') }}>
+</head>
+<body class='container'>
+    <h3 class='col-md-offset-1'> Categories </h3>
+    <br />
+
+    <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <a href='/'>
+                    <button type='button' class='btn btn-primary navbar-btn'> Home </button>
+                </a>
+                <a href='/add-category'>
+                    <button type='button' class='btn btn-primary navbar-btn'> Add a new category </button>
+                </a>
+            </div>
+        <div>
+    </nav>
+
+    {% for flash in app.session.flashBag.get('notice') %}
+    <div class='alert alert-danger'>
+        {{ flash }}
+    </div>
+    {% endfor %}
+
+    {% if not categories is empty %}
+        {% for cat in categories %}
+            <div class='panel panel-default col-md-3'>
+                <div class='panel-body'>
+                    <div class='row'>
+                        <div class='col-md-2'>
+                            {{ cat.name }}
+                        </div>
+                        <div class='btn-group col-md-offset-5' role='group'>
+                            <a href='/modify-category/{{cat.id}}'>
+                                <button type='button' class='btn btn-default'>
+                                    <span class='glyphicon glyphicon-pencil'
+                                        arial-hidden='true'></span>
+                                </button>
+                            </a>
+                            <a href='/delete-category/{{cat.id}}'>
+                                <button type='button' class='btn btn-default'>
+                                    <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <script src={{ asset('js/bootstrap.min.js') }}></script>
+</body>
+

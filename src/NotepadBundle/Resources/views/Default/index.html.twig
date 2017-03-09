@@ -1,0 +1,74 @@
+<head>
+    <title> My notepad </title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href={{ asset('css/bootstrap.min.css') }}>
+</head>
+<body class='container'>
+    <div class='row'>
+        <h1 class='col-md-offset-1'> Notepad </h1>
+    </div>
+    <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <a href='/add-note'>
+                    <button type='button' class='btn btn-primary navbar-btn'> Add a new note </button>
+                </a>
+                <a href='/categories'>
+                    <button type='button' class='btn btn-primary navbar-btn'> Categories </button>
+                </a>
+                {{ form_start(form, {'attr': {'class':'form-inline'}}) }}
+                {{ form_label(form.tag, 'Tag', {'label_attr': { 'class': 'sr-only' }}) }}
+                {{ form_widget(form.tag, { 'attr': {'class': 'form-control nav-item'}} ) }}
+                {{ form_label(form.submit) }}
+                {{ form_widget(form.submit, { 'attr': {'class': 'navbar-btn btn btn-primary
+                nav-item'}} ) }}
+                {{ form_end(form) }}
+            </div>
+        <div>
+    </nav>
+    {% for flash in app.session.flashBag.get('notice') %}
+    <div class='alert alert-danger'>
+        {{ flash }}
+    </div>
+    {% endfor %}
+    <div id='note-holder'>
+        {% if not notes is empty %}
+            {% for note in notes %}
+                <div class='panel panel-default'>
+                    <div class='panel-heading'>
+                        <h4> {{note.title}} </h4>
+                        <div class='row'>
+                            <div class='col-md-1'> {{note.category.name}} </div>
+                            <div class='col-md-2'> {{note.date.format('d M Y')}} </div>
+                            <div class='btn-group col-md-offset-8' role='group'>
+                                <a href='/modify-note/{{note.id}}'>
+                                    <button type='button' class='btn btn-default'>
+                                        <span class='glyphicon glyphicon-pencil'
+                                            arial-hidden='true'></span>
+                                    </button>
+                                </a>
+                                <a href='/delete-note/{{note.id}}'>
+                                    <button type='button' class='btn btn-default'>
+                                        <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='panel-body'> {{note.content}} </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <script src={{ asset('js/bootstrap.min.js') }}></script>
+    <script>
+        // Remove the <tag>
+        window.addEventListener('DOMContentLoaded', function() {
+            var elements = document.querySelectorAll('.panel-body');
+            console.log(elements);
+            for (elem of elements) {
+                elem.innerHTML = elem.innerHTML.replace(/&lt;\/?tag&gt;/g, '');
+            }
+        });
+    </script>
+</body>

@@ -1,0 +1,63 @@
+<head>
+    <title> {{ title }} </title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href={{ asset('css/bootstrap.min.css') }}>
+</head>
+<body>
+    <h3 class='col-md-offset-2'> {{ title }} </h3>
+    <br/>
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal' }} ) }}
+    <div class='form-group'>
+        {{ form_label(form.title, 'Title', { 'label_attr': {'class': 'control-label col-md-2'}} ) }}
+        <div class='col-md-8'>
+            {{ form_widget(form.title, { 'attr': {'class': 'form-control'}} ) }}
+        </div>
+    </div>
+    <div class='form-group'>
+        {{ form_label(form.category, 'Category', { 'label_attr': {'class': 'control-label col-md-2'}} ) }}
+        <div class='col-md-8'>
+            {{ form_widget(form.category, { 'attr': {'class': 'form-control col-md-10'}} ) }}
+        </div>
+    </div>
+    <div class='form-group'>
+        {{ form_label(form.content, 'Content', { 'label_attr': {'class': 'control-label col-md-2'}} ) }}
+        <div class='col-md-8'>
+            {{ form_widget(form.content, { 'attr': {'class': 'form-control col-md-10 note-content'}} ) }}
+        </div>
+    </div>
+    <div class='form-group'>
+        <div class='col-md-8 col-md-offset-2'>
+            {{ form_widget(form.submit, { 'attr': {'class': 'form-control btn btn-primary'}} ) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <div class='form-group'>
+        <div class='col-md-8 col-md-offset-2'>
+            <button id='tag' class='btn btn-default form-control'>
+                Add a tag
+            </button>
+        </div>
+    </div>
+    <script src={{ asset('js/bootstrap.min.js') }}></script>
+
+    <script>
+        function wrapText(textArea, openTag, closeTag) {
+            var len = textArea.value.length;
+            var start = textArea.selectionStart;
+            var end = textArea.selectionEnd;
+            var selectedText = textArea.value.substring(start, end);
+            var replacement = openTag + selectedText + closeTag;
+            textArea.value = (textArea.value.substring(0, start) + replacement +
+                    textArea.value.substring(end, len));
+        }
+        button = document.querySelector('#tag');
+
+        function launchWrapText() {
+            textArea = document.querySelector('.note-content');
+            wrapText(textArea, '<tag>', '</tag>');
+        }
+        button.addEventListener('click', launchWrapText);
+    </script>
+
+</body>
+
