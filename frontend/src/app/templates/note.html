@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class='panel-heading'>
+        <h4> {{ note.title }} </h4>
+        <div class='row'>
+            <div class='col-md-1'> {{ note.category.name }} </div>
+            <div class='col-md-2'> {{ note.date | date: 'dd/MM/yyyy' }} </div>
+            <div class='btn-group col-md-offset-8' role='group'>
+                <button type='button' class='btn btn-default filter-btn'
+                    (click)='hideEditor = !hideEditor'>
+                    <span class='glyphicon glyphicon-pencil'
+                        arial-hidden='true'></span>
+                </button>
+                <button type='button' class='btn btn-default' (click)='delete()'>
+                    <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class='panel-body'> {{note.content}} </div>
+</div>
+<div [hidden]='hideEditor'>
+    <note-editor [categories]='categories' [note]='note' [title]="'Update note'" (submitEvent)='onSubmitEvent($note)'></note-editor>
+</div>

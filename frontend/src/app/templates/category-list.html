@@ -1,0 +1,38 @@
+<button (click)='addCategory()' class='btn btn-primary'>
+    Add new category
+</button>
+
+<div [hidden]='hideCategoryEditor' id='editor'>
+    <form (ngSubmit)='onCategoryUpdate()' #categoryForm='ngForm'>
+        <div class='form-group'>
+            <label for='name'> Category </label>
+            <input [(ngModel)]='updateCategory.name' name='name' type='text' id='name' class='form-control'>
+        </div>
+        <button type='submit' class='btn btn-primary'>Submit</button>
+        <button (click)='cancelUpdate()' class='btn btn-primary'>Cancel</button>
+    </form>
+    <br>
+</div>
+
+<div *ngFor='let cat of categories'>
+    <div class='panel panel-default col-md-3'>
+        <div class='panel-body'>
+            <div class='row'>
+                <div class='col-md-2'>
+                    {{ cat.name }}
+                </div>
+                <div hidden='hideEditor'>
+                </div>
+                <div class='btn-group col-md-offset-5' role='group'>
+                    <button (click)='edit($event, cat)' class='btn btn-default'>
+                        <span class='glyphicon glyphicon-pencil'
+                            arial-hidden='true'></span>
+                    </button>
+                    <button (click)='delete($event, cat)' class='btn btn-default'>
+                        <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
