@@ -14,7 +14,7 @@ use NotepadBundle\Entity\Category;
 class CategoryApiController extends Controller
 {
     /**
-     * @Route("/api/category/{id}")
+     * @Route("/api/categories/{id}")
      * @Method("GET")
      */
     function getCategoryAction(Category $category) {
@@ -40,7 +40,7 @@ class CategoryApiController extends Controller
     }
 
     /**
-     * @Route("/api/category/")
+     * @Route("/api/categories/")
      * @Method("POST")
      */
     function createCategoryAction(Request $request) {
@@ -49,7 +49,7 @@ class CategoryApiController extends Controller
     }
 
     /**
-     * @Route("/api/category/{id}")
+     * @Route("/api/categories/{id}")
      * @Method("PUT")
      */
     function updateCategoryAction(Request $request, Category $category) {
@@ -65,7 +65,7 @@ class CategoryApiController extends Controller
     }
 
     /**
-     * @Route("/api/category/{id}")
+     * @Route("/api/categories/{id}")
      * @Method("DELETE")
      */
     function deleteCategoryAction(Category $category) {

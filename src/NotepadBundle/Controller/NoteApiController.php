@@ -15,7 +15,7 @@ use NotepadBundle\Entity\Note;
 class NoteApiController extends Controller
 {
     /**
-     * @Route("/api/note/{id}")
+     * @Route("/api/notes/{id}")
      * @Method("GET")
      */
     function getNoteAction(Note $note) {
@@ -41,7 +41,7 @@ class NoteApiController extends Controller
     }
 
     /**
-     * @Route("/api/note/")
+     * @Route("/api/notes/")
      * @Method("POST")
      */
     function createNoteAction(Request $request) {
@@ -50,7 +50,7 @@ class NoteApiController extends Controller
     }
 
     /**
-     * @Route("/api/note/{id}")
+     * @Route("/api/notes/{id}")
      * @Method("PUT")
      */
     function updateNoteAction(Request $request, Note $note) {
@@ -70,7 +70,7 @@ class NoteApiController extends Controller
     }
 
     /**
-     * @Route("/api/note/{id}")
+     * @Route("/api/notes/{id}")
      * @Method("DELETE")
      */
     function deleteNoteAction(Note $note) {
