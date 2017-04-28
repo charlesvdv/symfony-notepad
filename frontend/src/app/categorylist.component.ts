@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Category } from './category'
+import { CategoryService } from './category.service'
 
 const CATEGORIES: Category[] = [
     new Category(24, 'category'),
@@ -10,13 +11,25 @@ const CATEGORIES: Category[] = [
 @Component({
   selector: 'category-list',
   templateUrl: 'app/templates/category-list.html',
+  providers: [CategoryService],
 })
 export class CategoryListComponent  {
-    categories = CATEGORIES;
+    categories: Category[];
 
     hideCategoryEditor = true;
     updateCategory: Category = new Category(-1, '');
     oldCategory: Category = null;
+
+    constructor(private categoryService: CategoryService) { }
+
+    ngOnInit() {
+        // Get categories.
+        this.categoryService.getCategories().subscribe(
+            data => { this.categories = JSON.parse(data); },
+            err => console.log(err),
+            () => console.log('done fetching categories')
+        );
+    }
 
     public addCategory() {
         this.hideCategoryEditor = false;
