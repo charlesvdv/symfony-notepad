@@ -9,8 +9,8 @@ export class Note  {
         public category: Category,
     ) { }
 
-    // static getEmpty() {
-        // return new Note(-1, '', '', -1, Category.getEmpty())
-    // }
+    static getEmpty() {
+        return new Note(-1, '', '', -1, Category.getEmpty())
+    }
 }
 

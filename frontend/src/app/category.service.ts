@@ -22,15 +22,21 @@ export class CategoryService {
             .map((res: Response) => res.json());
     }
 
-    createCategory(note: Category) {
-        return this.http.post(this.BASEURL, JSON.stringify(note));
+    createCategory(category: Category) {
+        return this.http.post(this.BASEURL, this.serialize(category));
     }
 
-    updateCategory(note: Category) {
-        return this.http.put(this.BASEURL + note.id, JSON.stringify(note));
+    updateCategory(category: Category) {
+        return this.http.put(this.BASEURL + category.id, this.serialize(category));
     }
 
-    deleteCategory(note: Category) {
-        return this.http.delete(this.BASEURL + note.id);
+    deleteCategory(category: Category) {
+        return this.http.delete(this.BASEURL + category.id);
+    }
+
+    serialize(category: Category) {
+        return {
+            'name': category.name
+        }
     }
 }

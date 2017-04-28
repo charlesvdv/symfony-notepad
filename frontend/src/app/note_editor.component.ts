@@ -8,7 +8,8 @@ import { Category } from './category';
   templateUrl: 'app/templates/note_editor.html',
 })
 export class NoteEditorComponent  {
-    @Input() note: Note = new Note(-1, '', '', 0, new Category(-1, ''));
+    // @Input() note: Note = new Note(-1, '', '', 0, new Category(-1, ''));
+    @Input() note: Note = Note.getEmpty();
     @Input() categories: Category[];
     @Input() title: string;
     @Output() submitEvent: EventEmitter<any> = new EventEmitter();

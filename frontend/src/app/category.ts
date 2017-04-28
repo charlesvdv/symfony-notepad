@@ -4,8 +4,8 @@ export class Category  {
         public name: string,
     ) { }
 
-    // static getEmpty() {
-        // return new Category(-1, '');
-    // }
+    static getEmpty() {
+        return new Category(-1, '');
+    }
 }
 

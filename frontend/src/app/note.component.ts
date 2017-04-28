@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Note } from './note'
 import { Category } from './category'
+import { NoteService } from './note.service';
 
 @Component({
   selector: 'note',
@@ -14,12 +15,21 @@ export class NoteComponent  {
 
     hideEditor: boolean = true;
 
+    constructor(private noteService: NoteService) { }
+
     delete() {
         // TODO: make ajax request to remove the note.
         this.deleteEvent.emit(this.note);
     }
 
-    onSubmitEvent() {
+    onSubmitEvent(note: Note) {
         this.hideEditor = true;
+        // console.log(note);
+
+        this.noteService.updateNote(note).subscribe(
+            data => console.log(data),
+            err => console.log(err),
+            () => console.log('note updated!')
+        );
     }
 }

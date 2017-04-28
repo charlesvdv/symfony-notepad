@@ -19,5 +19,6 @@
     <div class='panel-body'> {{note.content}} </div>
 </div>
 <div [hidden]='hideEditor'>
-    <note-editor [categories]='categories' [note]='note' [title]="'Update note'" (submitEvent)='onSubmitEvent($note)'></note-editor>
+    <note-editor [categories]='categories' [note]='note' [title]="'Update note'"
+        (submitEvent)='onSubmitEvent($event)'></note-editor>
 </div>
