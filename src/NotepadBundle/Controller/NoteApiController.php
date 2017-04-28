@@ -71,6 +71,18 @@ class NoteApiController extends Controller
 
     /**
      * @Route("/api/notes/{id}")
+     * @Method("OPTIONS")
+     */
+    function cors() {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/text');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        return $response;
+    }
+
+    /**
+     * @Route("/api/notes/{id}")
      * @Method("DELETE")
      */
     function deleteNoteAction(Note $note) {

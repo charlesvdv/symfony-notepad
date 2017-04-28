@@ -66,6 +66,30 @@ class CategoryApiController extends Controller
 
     /**
      * @Route("/api/categories/{id}")
+     * @Method("OPTIONS")
+     */
+    function cors() {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/text');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        return $response;
+    }
+
+    /**
+     * @Route("/api/categories/")
+     * @Method("OPTIONS")
+     */
+    function cors1() {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/text');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        return $response;
+    }
+
+    /**
+     * @Route("/api/categories/{id}")
      * @Method("DELETE")
      */
     function deleteCategoryAction(Category $category) {
