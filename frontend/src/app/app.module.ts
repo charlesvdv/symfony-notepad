@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent }  from './app.component';
 import { NoteListComponent } from './notelist.component';
@@ -19,6 +20,7 @@ const appRoutes = [
     imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), HttpModule ],
     declarations: [ AppComponent, NoteListComponent, NoteComponent,
         NoteEditorComponent, CategoryListComponent ],
-    bootstrap:    [ AppComponent ]
+    bootstrap:    [ AppComponent ],
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
 })
 export class AppModule { }
