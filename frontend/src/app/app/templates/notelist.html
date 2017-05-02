@@ -1,0 +1,11 @@
+<button type='button' class='btn btn-primary navbar-btn' (click)='hideNewNoteEditor = !hideNewNoteEditor'>
+    Add a new note
+</button>
+
+<div [hidden]='hideNewNoteEditor'>
+    <note-editor [categories]='categories' [title]="'Create a new note'" (submitEvent)='onNewNote($event)'></note-editor>
+</div>
+
+<div *ngFor='let note of notes'>
+    <note [note]='note' [categories]='categories' (deleteEvent)='onDeleteEvent($event)'></note>
+</div>
