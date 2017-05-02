@@ -14,6 +14,7 @@ class MainController extends Controller
     /**
      * @Route("/", name="home")
      */
+    /*
     public function indexAction(Request $request)
     {
         $data = array();
@@ -52,5 +53,13 @@ class MainController extends Controller
         }
         return $this->render('NotepadBundle:Default:index.html.twig',
             array('notes' => $notes, 'form' => $form->createView()));
+    }
+    */
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function indexAction() {
+        return $this->render('NotepadBundle:Default:index.html.twig');
     }
 }
