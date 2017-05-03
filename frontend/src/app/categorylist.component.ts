@@ -18,6 +18,10 @@ export class CategoryListComponent  {
     constructor(private categoryService: CategoryService) { }
 
     ngOnInit() {
+        this.update();
+    }
+
+    update() {
         // Get categories.
         this.categoryService.getCategories().subscribe(
             data => { this.categories = JSON.parse(data); },
@@ -42,6 +46,7 @@ export class CategoryListComponent  {
             );
             this.categories.splice(index, 1);
         }
+        this.update();
     }
 
     public edit(event:any, category:Category) {
@@ -70,6 +75,7 @@ export class CategoryListComponent  {
                 () => console.log('category successfully updated')
             );
         }
+        this.update();
     }
 
     public cancelUpdate() {

@@ -21,6 +21,10 @@ export class NoteListComponent {
     constructor(private noteService: NoteService, private categoryService: CategoryService) { }
 
     ngOnInit() {
+        this.update();
+    }
+
+    update() {
         // Get notes.
         this.noteService.getNotes().subscribe(
             data => { this.notes = JSON.parse(data); },
@@ -47,6 +51,7 @@ export class NoteListComponent {
         if (index != -1) {
             this.notes.splice(index, 1);
         }
+        this.update();
     }
 
     onNewNote(note: Note) {
@@ -58,6 +63,7 @@ export class NoteListComponent {
 
         this.notes.push(note);
         this.hideNewNoteEditor = true;
+        this.update();
     }
 }
 
