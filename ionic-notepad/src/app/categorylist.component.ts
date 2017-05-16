@@ -81,7 +81,7 @@ export class CategoryListComponent  {
         } else {
             // We should update the category.
             this.categoryService.updateCategory(this.updateCategory).subscribe(
-                data => this.udpate(),
+                data => this.update(),
                 err => console.log(err),
                 () => console.log('category successfully updated')
             );
