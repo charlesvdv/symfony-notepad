@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notes</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)='hideNewNoteEditor = !hideNewNoteEditor'>
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <div [hidden]='hideNewNoteEditor'> -->
+    <div *ngIf='!hideNewNoteEditor'>
+        <note-editor [categories]='categories' [title]="'Create a new note'" (submitEvent)='onNewNote($event)'></note-editor>
+    </div>
+
+    <div *ngFor='let note of notes'>
+        <note [note]='note' [categories]='categories' (deleteEvent)='onDeleteEvent($event)'></note>
+    </div>
+<ion-content>

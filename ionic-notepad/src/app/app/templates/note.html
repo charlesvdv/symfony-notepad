@@ -1,0 +1,30 @@
+<ion-card>
+    <ion-card-header>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12><h1>  {{ note.title }} </h1></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-3>  {{ note.category.name }} </ion-col>
+                <ion-col col-6>  {{ note.date | date: 'dd/MM/yyyy' }} </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4>
+                    <button ion-button small (click)='hideEditor = !hideEditor'>Update</button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button small (click)='delete()'>Delete</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-header>
+        <ion-row>
+            <ion-col col-12>  {{ note.content }} </ion-col>
+        </ion-row>
+        <ion-row>
+            <div [hidden]='hideEditor'>
+                <note-editor [categories]='categories' [note]='note' [title]="'Update note'"
+                    (submitEvent)='onSubmitEvent($event)'></note-editor>
+            </div>
+        </ion-row>
+</ion-card>

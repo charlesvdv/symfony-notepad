@@ -1,0 +1,46 @@
+<!--
+<div class='container'>
+    <h4> {{ title }} </h4>
+        <div class='form-group'>
+            <label for='title'> Title </label>
+            <input [(ngModel)]='note.title' name='title' type='text' id='title' class='form-control'>
+        </div>
+        <div class='form-group'>
+            <label for='title'> Categories </label>
+            <select class='form-control' [(ngModel)]='note.category'>
+                <option *ngFor='let category of categories' [ngValue]='category'>
+                    {{category.name}}
+                </option>
+            </select>
+        </div>
+        <div class='form-group'>
+            <label for='content'> Content </label>
+            <textarea rows='5' id='content' class='form-control' [(ngModel)]='note.content'
+                name='content'></textarea>
+        </div>
+        <button (click)='onSubmit()' type='submit' class='btn btn-primary'>Submit</button>
+        <button (click)='cancel()' class='btn btn-primary'>Cancel</button>
+    <br>
+</div>
+-->
+<ion-list>
+    <ion-item>
+        <ion-label stacked> Title </ion-label>
+        <ion-input type='text' [(ngModel)]='note.title'></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked> Category </ion-label>
+        <ion-select [(ngModel)]='note.category'>
+            <ion-option *ngFor='let category of categories' [value]='category'>
+                {{ category.name }}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked> Content </ion-label>
+        <!-- TODO add textarea -->
+        <ion-input type='textarea' [(ngModel)]='note.content'></ion-input>
+    </ion-item>
+</ion-list>
+<button ion-button (click)='onSubmit()'>Submit</button>
+<button ion-button (click)='cancel()'>Cancel</button>
