@@ -52,13 +52,12 @@ export class CategoryListComponent  {
         let index = this.categories.findIndex((n) => (n === category));
         if (index != -1) {
             this.categoryService.deleteCategory(this.categories[index]).subscribe(
-                data => console.log(data),
+                data => this.update(),
                 err => console.log(err),
                 () => console.log('category successfully deleted')
             );
             this.categories.splice(index, 1);
         }
-        setTimeout(() => this.update, 500);
     }
 
     public edit(event:any, category:Category) {
@@ -75,14 +74,14 @@ export class CategoryListComponent  {
             // We should create a new category.
             this.categories.push(this.updateCategory);
             this.categoryService.createCategory(this.updateCategory).subscribe(
-                data => console.log(data),
+                data => this.update(),
                 err => console.log(err),
                 () => console.log('category successfully created')
             );
         } else {
             // We should update the category.
             this.categoryService.updateCategory(this.updateCategory).subscribe(
-                data => console.log(data),
+                data => this.udpate(),
                 err => console.log(err),
                 () => console.log('category successfully updated')
             );

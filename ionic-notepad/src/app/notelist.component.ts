@@ -30,6 +30,7 @@ export class NoteListComponent {
     }
 
     update() {
+        console.log('calling update');
         // Get notes.
         this.noteService.getNotes().subscribe(
             data => {
@@ -54,7 +55,7 @@ export class NoteListComponent {
 
     onDeleteEvent(element: Note) {
         this.noteService.deleteNote(element).subscribe(
-            data => console.log(data),
+            data => this.update(),
             err => console.log(err),
             () => console.log('note deleted')
         );
@@ -63,19 +64,17 @@ export class NoteListComponent {
         if (index != -1) {
             this.notes.splice(index, 1);
         }
-        this.update();
+        setTimeout(() => this.update, 500);
     }
 
     onNewNote(note: Note) {
         this.noteService.createNote(note).subscribe(
-            data => console.log(data),
+            data => this.update(),
             err => console.log(err),
             () => console.log('note created!')
         );
 
         this.notes.push(note);
         this.hideNewNoteEditor = true;
-        this.update();
     }
 }
-
